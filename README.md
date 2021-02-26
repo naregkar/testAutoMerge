@@ -1,3 +1,3 @@
 # testAutoMerge
 
-line
+lirne
