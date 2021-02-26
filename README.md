@@ -1,1 +1,3 @@
 # testAutoMerge
+
+line
