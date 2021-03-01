@@ -10,4 +10,4 @@ delete_branch_on_merge = true
 notify_on_conflict = true
 
 [merge.message]
-title = "github_default"
+title = "pull_request_title"
