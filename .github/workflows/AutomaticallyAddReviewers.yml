@@ -11,4 +11,4 @@ jobs:
       - uses: kentaro-m/auto-assign-action@v1.1.0
         with:
           repo-token: "${{ secrets.REPO_TOKEN }}"
-          configuration-path: ".github/PR-Reviewerrs.yml"
+          configuration-path: ".github/PR-Reviewers.yml"
