@@ -19,3 +19,6 @@ jobs:
       - uses: actions/labeler@main
         with:
           repo-token: "${{ secrets.REPO_TOKEN }}"
+          configuration-path: ".github/labeler.yml"
+          
+          
