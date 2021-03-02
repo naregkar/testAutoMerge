@@ -16,11 +16,10 @@ jobs:
                   --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-6/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq '.fields.status.name');                   
-             echo $nar
-     #- name: use output
-     #  run: |
-     #   echo $json_var | jq '.client_payload'
-     #  env:
-     #     json_var: ${{ steps.retrieveJiraStatus.outputs.json_var}}
+             #echo $nar
+             echo ::set-output name=jira_status::'$nar'
+     - name: Display Status
+       run: |
+        echo ${{ steps.retrieveJiraStatus.outputs.jira_status}}
       
 
