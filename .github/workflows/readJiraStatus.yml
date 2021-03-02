@@ -17,9 +17,9 @@ jobs:
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq '.fields.status.name');                   
              #echo $nar
-             echo ::set-output name=jira_status::'$nar'
+             echo "jira_status=$nar" >> $GITHUB_ENV
      - name: Display Status
        run: |
-        echo ${{ steps.retrieveJiraStatus.outputs.jira_status}}
+             echo "${{ env.jira_status }}"
       
 
