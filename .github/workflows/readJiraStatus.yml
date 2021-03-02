@@ -12,7 +12,7 @@ jobs:
      - name: set output
        id: set
        run: |
-         echo ::set-output name=json_var::'[{ "name": "test", "client_payload": "111" }]'
+         echo ::set-output name=json_var::'{ "name": "test", "client_payload": "111" }'
      - name: use output
        run: |
         echo $json_var | jq '.client_payload'
