@@ -1,0 +1,22 @@
+name: 'Get Jira Status'
+on:
+  repository_dispatch:
+    types: MergeMasterToRelease
+  workflow_dispatch:
+  
+jobs:
+  read-jira-status:
+    runs-on: ubuntu-latest
+    
+    steps:
+     - name: set output
+       id: set
+       run: |
+         echo ::set-output name=json_var::'[{ "name": "test", "client_payload": "111" }, { "name": "test2", "client_payload": "222" }] '
+     - name: use output
+       run: |
+        echo $json_var | jq '.[].name'
+       env:
+          json_var: ${{ steps.set.outputs.json_var}}
+      
+
