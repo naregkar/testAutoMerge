@@ -9,14 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-     - name: set output
-       id: set
+     - name: Read Jira Issue Status
+       id: retrieveJiraStatus
        run: |
-         echo ::set-output name=json_var::'{ "name": "test", "client_payload": "111" }'
-     - name: use output
-       run: |
-        echo $json_var | jq '.client_payload'
-       env:
-          json_var: ${{ steps.set.outputs.json_var}}
+             nar = $(curl --request GET \
+                --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-6/' \
+                --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
+                --header 'Accept: application/json' | jq '.fields.status.name');                   
+                echo '$nar'
+     #- name: use output
+     #  run: |
+     #   echo $json_var | jq '.client_payload'
+     #  env:
+     #     json_var: ${{ steps.retrieveJiraStatus.outputs.json_var}}
       
 
