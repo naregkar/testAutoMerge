@@ -12,11 +12,11 @@ jobs:
      - name: Read Jira Issue Status
        id: retrieveJiraStatus
        run: |
-             nar = $(curl --request GET \
-                --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-6/' \
-                --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
-                --header 'Accept: application/json' | jq '.fields.status.name');                   
-                echo '$nar'
+             nar=$(curl --request GET \
+                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-6/' \
+                  --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
+                  --header 'Accept: application/json' | jq '.fields.status.name');                   
+             echo '$nar'
      #- name: use output
      #  run: |
      #   echo $json_var | jq '.client_payload'
