@@ -37,9 +37,15 @@ jobs:
       run: |
             echo ${{ env.jiraIssue_status }}
             
-    - name: Assess the Status
+    - name: Assess the Status / To Do
+      if: env.jiraIssue_status == "To Do"
       run: |
-            echo hey
+            echo "To Do"
+            
+    - name: Assess the Status / Done
+      if: env.jiraIssue_status == "Done"
+      run: |
+            echo "Done"
               
 
               
