@@ -33,6 +33,6 @@ jobs:
               JiraIdUnparsed=$GITHUB_PR_TITLE
               JiraId=${JiraIdUnparsed%]*}
               JiraId={JiraId:1}
-              echo JiraId
+              echo $JiraId
               
              
