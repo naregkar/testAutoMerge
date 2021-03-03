@@ -21,5 +21,8 @@ jobs:
      - name: Display Status
        run: |
              echo "${{ env.jira_status }}"
-      
-
+    
+     - name: Get Jira Issue ID
+       run: |
+              echo "{{ github.event.pull_request.title }}"
+             
