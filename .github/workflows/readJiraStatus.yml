@@ -35,7 +35,12 @@ jobs:
              
     - name: Display Status
       run: |
-            echo "${{ env.jiraIssue_status }}"
+            echo ${{ env.jiraIssue_status }}
+            
+    - name: Assess the Status
+      run: |
+            echo hey
+              
 
               
              
