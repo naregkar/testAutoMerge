@@ -40,7 +40,7 @@ jobs:
     - name: Assess the Status / To Do
       run: |
             returnedStatus=${{ env.jiraIssue_status }}
-            echo 'returned status is: $returnedStatus'
+            echo 'returned status is: ' $returnedStatus
             if [ "$returnedStatus" = "Done" ]; then
               echo "Finished.. Success"
             else
