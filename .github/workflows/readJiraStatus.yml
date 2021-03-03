@@ -7,7 +7,7 @@ on:
     branches: 
       - master
 env:
-  GITHUB_PR_NUMBER: ${{github.event.pull_request.title}}     
+  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}     
  
 jobs:
   read-jira-status:
@@ -29,5 +29,10 @@ jobs:
     
      - name: Get Jira Issue ID
        run: |
-              echo "$GITHUB_PR_NUMBER"
+              echo "$GITHUB_PR_TITLE"
+              JiraIdUnparsed=$GITHUB_PR_TITLE
+              JiraId=${JiraIdUnparsed%]*}
+              JiraId={JiraId:1}
+              echo JiraId
+              
              
