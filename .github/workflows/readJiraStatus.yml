@@ -21,21 +21,21 @@ jobs:
             JiraIdUnparsed=$GITHUB_PR_TITLE
             JiraId=${JiraIdUnparsed%]*}
             JiraId=${JiraId:1}
-            echo $JiraId
+            echo "jira_id=$JiraId" >> $GITHUB_ENV
     
     - name: Read Jira Issue Status
       id: retrieveJiraStatus
       run: |
             restApiGET=$(curl --request GET \
-                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/$JiraId/' \
+                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/${{ env.jira_id }}/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq '.fields.status.name');                   
              #echo $restApiGET
-             echo "jira_status=$restApiGET" >> $GITHUB_ENV
+             echo "jiraIssue_status=$restApiGET" >> $GITHUB_ENV
              
     - name: Display Status
       run: |
-            echo "${{ env.jira_status }}"
+            echo "${{ env.jiraIssue_status }}"
 
               
              
