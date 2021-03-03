@@ -41,10 +41,11 @@ jobs:
       run: |
             returnedStatus=${{ env.jiraIssue_status }}
             echo 'returned status is: $returnedStatus'
-            if [ "$returnedStatus" = "To Do" ]; then
-              echo "To Do it is"
+            if [ "$returnedStatus" -ne "Done" ]; then
+              echo "Not finished"
+              exit 1
             else
-              echo "not a to do"
+              echo "Done, success"
             fi  
       
       
