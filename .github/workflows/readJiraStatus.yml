@@ -14,25 +14,28 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-     - name: Read Jira Issue Status
-       id: retrieveJiraStatus
-       run: |
-             nar=$(curl --request GET \
-                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-6/' \
+    
+    - name: Get Jira Issue ID
+      run: |
+            echo "$GITHUB_PR_TITLE"
+            JiraIdUnparsed=$GITHUB_PR_TITLE
+            JiraId=${JiraIdUnparsed%]*}
+            JiraId=${JiraId:1}
+            echo $JiraId
+    
+    - name: Read Jira Issue Status
+      id: retrieveJiraStatus
+      run: |
+            restApiGET=$(curl --request GET \
+                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/$JiraId/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq '.fields.status.name');                   
-             #echo $nar
-             echo "jira_status=$nar" >> $GITHUB_ENV
-     - name: Display Status
-       run: |
-             echo "${{ env.jira_status }}"
-    
-     - name: Get Jira Issue ID
-       run: |
-              echo "$GITHUB_PR_TITLE"
-              JiraIdUnparsed=$GITHUB_PR_TITLE
-              JiraId=${JiraIdUnparsed%]*}
-              JiraId=${JiraId:1}
-              echo $JiraId
+             #echo $restApiGET
+             echo "jira_status=$restApiGET" >> $GITHUB_ENV
+             
+    - name: Display Status
+      run: |
+            echo "${{ env.jira_status }}"
+
               
              
