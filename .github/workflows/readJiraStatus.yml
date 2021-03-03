@@ -32,7 +32,7 @@ jobs:
               echo "$GITHUB_PR_TITLE"
               JiraIdUnparsed=$GITHUB_PR_TITLE
               JiraId=${JiraIdUnparsed%]*}
-              JiraId={JiraId:1}
+              JiraId=${JiraId:1}
               echo $JiraId
               
              
