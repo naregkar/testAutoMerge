@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: 
       - master
+  pull_request_review:
+    types: [submitted]    
 env:
   GITHUB_PR_TITLE: ${{github.event.pull_request.title}}     
  
