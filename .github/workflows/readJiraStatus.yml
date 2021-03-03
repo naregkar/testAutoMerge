@@ -38,15 +38,14 @@ jobs:
             echo ${{ env.jiraIssue_status }}
             
     - name: Assess the Status / To Do
-      if: ${{ env.jiraIssue_status }} == 'To Do'
       run: |
-            echo "To Do"
+            returnedStatus=${{ env.jiraIssue_status }}
+            echo 'returned status is: $returnedStatus'
+            if [ "$returnedStatus" = "To Do" ]; then
+              echo "To Do it is"
+            else
+              echo "not a to do"
+            fi  
+      
+      
             
-    - name: Assess the Status / Done
-      if: ${{ env.jiraIssue_status }} == 'Done'
-      run: |
-            echo "Done"
-              
-
-              
-             
