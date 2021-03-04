@@ -1,9 +1,11 @@
 name: 'Manage Jira PR'
 on:
-  pull_request:
-    branches: 
-      - master
+  #pull_request:
+  #  branches: 
+  #    - master
   pull_request_review:
+    branches:
+      - master
     types: [submitted]    
 env:
   GITHUB_PR_TITLE: ${{github.event.pull_request.title}}     
