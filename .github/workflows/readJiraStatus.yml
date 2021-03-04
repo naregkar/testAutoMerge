@@ -1,8 +1,5 @@
 name: 'Manage Jira PR'
 on:
-  #repository_dispatch:
-  #  types: MergeMasterToRelease
-  #workflow_dispatch:
   pull_request:
     branches: 
       - master
