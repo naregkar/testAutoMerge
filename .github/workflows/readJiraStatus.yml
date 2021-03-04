@@ -1,4 +1,4 @@
-name: 'Get Jira Status'
+name: 'Manage PR Flow'
 on:
   #repository_dispatch:
   #  types: MergeMasterToRelease
@@ -12,6 +12,16 @@ env:
   GITHUB_PR_TITLE: ${{github.event.pull_request.title}}     
  
 jobs:
+
+  add-reviews:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/auto-assign-action@v1.1.0
+        with:
+          repo-token: "${{ secrets.REPO_TOKEN }}"
+          configuration-path: ".github/PR-Reviewers.yml"
+
+
   read-jira-status:
     runs-on: ubuntu-latest
     
