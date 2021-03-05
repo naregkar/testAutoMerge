@@ -1,0 +1,16 @@
+name: TriggerUponJiraStatusChangeToMerge
+
+on:  
+  workflow_dispatch:
+    types: CheckJira
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo triggered from Jira webhook
+    
