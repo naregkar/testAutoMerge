@@ -1,17 +1,19 @@
 name: 'Manage Jira PR'
 on:
-  #pull_request:
-  #  branches: 
-  #    - master
-  pull_request_review:
-    branches:
+  pull_request:
+    branches: 
       - master
-    types: [submitted]    
+  #pull_request_review:
+  #  branches:
+  #    - master
+  #  types: [submitted]
+  workflow_dispatch:
+    types: ManageJira
 env:
   GITHUB_PR_TITLE: ${{github.event.pull_request.title}}     
  
+ 
 jobs:
-
   read-jira-status:
     runs-on: ubuntu-latest
     
