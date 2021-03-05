@@ -1,4 +1,4 @@
-name: 'Manage Jira PR'
+name: 'ManageJiraPR'
 on:
   pull_request:
     branches: 
