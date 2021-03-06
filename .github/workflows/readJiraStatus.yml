@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
     types: ManageJira
 env:
-  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}     
+  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}
+  GITHUB_WORKFLOW_ID : ${{github.run_id}}
  
  
 jobs:
@@ -18,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    
+    - name: Display Run ID
+      run: echo $GITHUB_WORKFLOW_ID
     
     - name: Get Jira Issue ID
       run: |
