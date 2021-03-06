@@ -48,9 +48,8 @@ jobs:
     - name: Update the Jira Issue with the GitHub Workflow ID
       run: |
             curl -D- -u nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87 \
-                 -X PUT --data '{ "fields": { "customfield_10029" : "b1b2" }}' \
+                 -X PUT --data "{ \"fields\": { \"customfield_10029\" : \"$GITHUB_WORKFLOW_ID\"  }}' \
                  -H "Content-Type: application/json" https://naregkar.atlassian.net/rest/api/3/issue/${{ env.jira_id }}
-            echo "this555" 
             
     - name: Assess the Status / To Do
       run: |
