@@ -49,8 +49,8 @@ jobs:
                  -H "Content-Type: application/json" https://naregkar.atlassian.net/rest/api/3/issue/${{ env.jira_id }}
             
             #returnedStatus=${{ env.jiraIssue_status }}
-            echo 'returned status is: ' $restApiGET
-            if [ "$restApiGET" = "Ready to Merge" ]; then
+            echo 'returned status is:'$restApiGET
+            if [[ "$restApiGET" = "Ready to Merge" ]]; then
               echo "Finished.. Success"
             else
               echo "Not finished"
