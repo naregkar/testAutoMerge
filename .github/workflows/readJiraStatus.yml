@@ -40,7 +40,7 @@ jobs:
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq '.fields.status.name');                   
 
-             echo "jiraIssue_status=$restApiGET" >> $GITHUB_ENV
+            echo "jiraIssue_status=$restApiGET" >> $GITHUB_ENV
       
             curl -D- -u nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87 \
                  -X PUT --data '{ "fields": { "customfield_10029" : "'"$GITHUB_WORKFLOW_ID"'" }}' \
