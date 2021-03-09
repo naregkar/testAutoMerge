@@ -42,7 +42,7 @@ jobs:
 
             echo "jiraIssue_status=$restApiGET" >> $GITHUB_ENV
       
-            echo $restApiGET
+            echo "rest api echo is " $restApiGET
             
             curl -D- -u nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87 \
                  -X PUT --data '{ "fields": { "customfield_10029" : "'"$GITHUB_WORKFLOW_ID"'" }}' \
