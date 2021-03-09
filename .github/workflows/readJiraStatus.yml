@@ -55,7 +55,7 @@ jobs:
       run: |
             returnedStatus=${{ env.jiraIssue_status }}
             echo 'returned status is: ' $returnedStatus
-            if [ "$returnedStatus" = "Done" ]; then
+            if [ "$returnedStatus" = "Ready To Merge" ]; then
               echo "Finished.. Success"
             else
               echo "Not finished"
