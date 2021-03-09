@@ -42,15 +42,15 @@ jobs:
 
             echo "jiraIssue_status=$restApiGET" >> $GITHUB_ENV
       
-            echo "rest api echo is " $restApiGET
+            #echo "rest api echo is " $restApiGET
             
             curl -D- -u nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87 \
                  -X PUT --data '{ "fields": { "customfield_10029" : "'"$GITHUB_WORKFLOW_ID"'" }}' \
                  -H "Content-Type: application/json" https://naregkar.atlassian.net/rest/api/3/issue/${{ env.jira_id }}
             
-            returnedStatus=${{ env.jiraIssue_status }}
-            echo 'returned status is: ' $returnedStatus
-            if [ "$returnedStatus" = "Ready To Merge" ]; then
+            #returnedStatus=${{ env.jiraIssue_status }}
+            #echo 'returned status is: ' $returnedStatus
+            if [ $restApiGET = "Ready To Merge" ]; then
               echo "Finished.. Success"
             else
               echo "Not finished"
