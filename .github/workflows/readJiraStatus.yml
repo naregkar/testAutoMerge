@@ -50,7 +50,7 @@ jobs:
             
             #returnedStatus=${{ env.jiraIssue_status }}
             echo 'returned status is:'$restApiGET
-            if [[ "$restApiGET" = "Ready to Merge" ]]; then
+            if [[ "$restApiGET" = "\"Ready to Merge\"" ]]; then
               echo "Finished.. Success"
             else
               echo "Not finished"
