@@ -1,10 +1,10 @@
 name: GetCountofApprovers
 
 on:
-  pull_request_review:
-    branches:
-      - master
-    types: [submitted]
+  #pull_request_review:
+  #  branches:
+  #    - master
+  #  types: [submitted]
     
 jobs:
   getcount:
