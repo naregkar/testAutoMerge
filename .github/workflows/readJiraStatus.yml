@@ -30,29 +30,22 @@ jobs:
             JiraId=${JiraIdUnparsed%]*}
             JiraId=${JiraId:1}
             echo "jira_id=$JiraId" >> $GITHUB_ENV
-    
-    - name: Read Jira Issue Status
-      id: retrieveJiraStatus
+            
+            
+    - name: Read Jira Issue Status and Assess the value
+      id: retrieveJiraStatus    
       run: |
             restApiGET=$(curl --request GET \
                   --url 'https://naregkar.atlassian.net/rest/api/3/issue/${{ env.jira_id }}/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq '.fields.status.name');                   
-             #echo $restApiGET
+
              echo "jiraIssue_status=$restApiGET" >> $GITHUB_ENV
-             
-    - name: Display Status
-      run: |
-            echo ${{ env.jiraIssue_status }}
-            
-    - name: Update the Jira Issue with the GitHub Workflow ID
-      run: |
+      
             curl -D- -u nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87 \
                  -X PUT --data '{ "fields": { "customfield_10029" : "'"$GITHUB_WORKFLOW_ID"'" }}' \
                  -H "Content-Type: application/json" https://naregkar.atlassian.net/rest/api/3/issue/${{ env.jira_id }}
             
-    - name: Assess the Status / To Do
-      run: |
             returnedStatus=${{ env.jiraIssue_status }}
             echo 'returned status is: ' $returnedStatus
             if [ "$returnedStatus" = "Ready To Merge" ]; then
@@ -63,4 +56,3 @@ jobs:
             fi  
       
       
-            
