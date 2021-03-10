@@ -17,9 +17,7 @@ jobs:
                 echo 'PR Title is:' $GITHUB_PR_TITLE
 
                 if [[ $GITHUB_PR_TITLE =~ ^prclause ]]; then
-                echo ::set-output name=match::true
+                  echo 'exists'
                 fi
-                echo "Hooray!!It's available"
-                else
-                echo "Oops!!Not available"
-                fi
+                echo 'after if'
+                
