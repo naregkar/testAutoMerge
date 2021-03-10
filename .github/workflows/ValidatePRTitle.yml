@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Valicate PR Title
+      - name: Validate PR Title
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
                 
