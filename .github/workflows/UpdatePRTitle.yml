@@ -19,8 +19,7 @@ jobs:
         id: extract_branch
         shell: bash
         run: |
-               echo running on branch ${GITHUB_REF##*/}
-               echo GITHUB_REF
+               echo "PR_Branch_Name=${{ github.head_ref }}"
         
       
       - name: Update PR Title
