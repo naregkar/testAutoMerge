@@ -15,11 +15,11 @@ jobs:
       - name: Valicate PR Title
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
-                string='My string';
 
-                if [[ $string =~ "[123]" ]]; then
-                  echo 'expression exists in there!'
+                File=YOUR_FILENAME  
+                if grep -q [1234] "$GITHUB_PR_TITLE"; ##note the space after the string you are searching for
+                then
+                echo "Hooray!!It's available"
+                else
+                echo "Oops!!Not available"
                 fi
-
-
-      
