@@ -1,0 +1,19 @@
+name: UpdatePRTitle
+
+on:
+   pull_request:
+    types:
+      - edited
+    branches: 
+      - master
+env:
+  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}    
+
+jobs:
+  updatePRTitle:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Update PR Title
+        run:  |
+               echo $GITHUB_PR_TITLE
