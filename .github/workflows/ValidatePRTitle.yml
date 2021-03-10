@@ -23,7 +23,9 @@ jobs:
                   $correctFormat = 'true'
                 fi
                 
-                if [[$correctFormat != 'true' ]]
+                echo 'correct format is:' $correctFormat
+                
+                if [[ $correctFormat -ne 'true' ]]; then
                   exit 1
                 fi  
                 
