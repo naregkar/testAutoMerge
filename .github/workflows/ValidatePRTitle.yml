@@ -1,0 +1,19 @@
+name: ValidatePRTitle
+
+on:
+  pull_request:
+    branches: 
+      - master
+env:
+  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}    
+
+jobs:
+  validatePR:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Valicate PR Title
+        run:  |
+                echo 'PR Title is: $GITHUB_PR_TITLE'
+
+      
