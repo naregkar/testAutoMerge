@@ -16,7 +16,7 @@ jobs:
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
 
-                if [[ $GITHUB_PR_TITLE =~ ^\[AB-[0-9]+\] ]]; then
+                if [[ $GITHUB_PR_TITLE =~ ^\[PW-[0-9]+\] ]]; then
                   echo 'correct format'
                 fi
                 echo 'after if'
