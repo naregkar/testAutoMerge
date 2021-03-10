@@ -16,8 +16,8 @@ jobs:
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
 
-                if [[ $GITHUB_PR_TITLE =~ ^prclause ]]; then
-                  echo 'exists'
+                if [[ $GITHUB_PR_TITLE =~ ^[0-9] ]]; then
+                  echo 'correct format'
                 fi
                 echo 'after if'
                 
