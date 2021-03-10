@@ -1,7 +1,7 @@
 # testAutoMerge
 
 
-line
+lin1e
 456
 
 line 1
