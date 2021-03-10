@@ -15,5 +15,11 @@ jobs:
       - name: Valicate PR Title
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
+                string='My string';
+
+                if [[ $string =~ "[123]" ]]; then
+                  echo 'expression exists in there!'
+                fi
+
 
       
