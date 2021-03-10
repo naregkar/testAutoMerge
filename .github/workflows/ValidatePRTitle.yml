@@ -16,14 +16,14 @@ jobs:
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
 
-                #if [[ $GITHUB_PR_TITLE =~ ^\[PW-[0-9]+\] ]]; then
-                #  echo 'correct format'
-                #fi
-                
-                regex='^[\ []PW-[0-9]+[]\ ] .+$'
-                if [[ $GITHUB_PR_TITLE =~ ${regex} ]]; then
+                if [[ $GITHUB_PR_TITLE =~ ^\[PW-[0-9]+\] ]]; then
                   echo 'correct format'
                 fi
+                
+                #regex='^[\ []PW-[0-9]+[]\ ] .+$'
+                #if [[ $GITHUB_PR_TITLE =~ ${regex} ]]; then
+                #  echo 'correct format'
+                #fi
                 
                 echo 'after if'
                 
