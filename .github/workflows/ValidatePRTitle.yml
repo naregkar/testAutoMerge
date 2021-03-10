@@ -16,11 +16,11 @@ jobs:
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
                 
-                $correctFormat
+                correctFormat=''
 
                 if [[ $GITHUB_PR_TITLE =~ ^\[PW-[0-9]+\] ]]; then
                   #echo 'correct format'
-                  $correctFormat = 'true'
+                  $correctFormat='true'
                 fi
                 
                 echo 'correct format is:' $correctFormat
