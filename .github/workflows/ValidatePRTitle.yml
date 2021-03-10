@@ -16,9 +16,9 @@ jobs:
         run:  |
                 echo 'PR Title is:' $GITHUB_PR_TITLE
 
-                File=YOUR_FILENAME  
-                if grep -q [1234] "$GITHUB_PR_TITLE"; ##note the space after the string you are searching for
-                then
+                if [[ $GITHUB_PR_TITLE =~ ^prclause ]]; then
+                echo ::set-output name=match::true
+                fi
                 echo "Hooray!!It's available"
                 else
                 echo "Oops!!Not available"
