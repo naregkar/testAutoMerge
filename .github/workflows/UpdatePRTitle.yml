@@ -19,7 +19,7 @@ jobs:
       - name: Update PR Title
         run:  |
                
-               if [[ $GITHUB_PR_TITLE =~ ^\[PW-[0-9]+\] ]]; then
+               if [[ $GITHUB_PR_TITLE =~ ^\[DT-[0-9]+\] ]]; then
                   echo 'correct format'
                   
                   echo $GITHUB_PR_BRANCH_NAME
