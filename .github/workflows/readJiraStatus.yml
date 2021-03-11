@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
     types: ManageJira
 env:
-  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}
+  #GITHUB_PR_TITLE: ${{github.event.pull_request.title}}
+  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
   GITHUB_WORKFLOW_ID: ${{github.run_id}}
  
  
@@ -25,8 +26,16 @@ jobs:
     
     - name: Get Jira Issue ID
       run: |
-            echo "$GITHUB_PR_TITLE"
-            JiraIdUnparsed=$GITHUB_PR_TITLE
+            
+            restApiPRTitle=$(curl \
+                              -H "Accept: application/vnd.github.v3+json" \
+                              https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq '.title')
+                
+            parsedTitle="${restApiPRTitle%\"}"
+            parsedTitle="${parsedTitle#\"}"         
+      
+            echo $parsedTitle
+            JiraIdUnparsed=$parsedTitle
             JiraId=${JiraIdUnparsed%]*}
             JiraId=${JiraId:1}
             echo "jira_id=$JiraId" >> $GITHUB_ENV
