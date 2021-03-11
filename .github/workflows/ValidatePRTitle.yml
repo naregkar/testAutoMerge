@@ -18,7 +18,7 @@ jobs:
                 echo PR Numer is: $GITHUB_PR_NUMBER
                 #echo 'PR Title is:' ${{ github.event.pull_request.title }}
                 
-                restApiPRTitle = $(curl \
+                restApiPRTitle=$(curl \
                                       -H "Accept: application/vnd.github.v3+json" \
                                       https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq '.title')
                 
