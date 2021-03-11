@@ -1,6 +1,7 @@
 name: 'ManageJiraPR'
 on:
   pull_request:
+    types: [opened, edited]
     branches: 
       - master
   #pull_request_review:
