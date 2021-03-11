@@ -26,6 +26,7 @@ jobs:
                
                   restApiGETWorkflowId=$(curl \
                                        -H "Accept: application/vnd.github.v3+json" \
+                                       -H "Authorization: token 4a1ffc4ad48ac59cf616556ff046c5d8cd688ee1" \
                                        "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ValidatePRTitle").id')
                
                   echo $restApiGETWorkflowId
