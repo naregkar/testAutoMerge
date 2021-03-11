@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: 
       - master
-env:
-  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}    
+#env:
+#  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}    
 
 jobs:
   validatePR:
@@ -14,9 +14,9 @@ jobs:
     steps:
       - name: Validate PR Title
         run:  |
-                echo 'PR Title is:' $GITHUB_PR_TITLE
+                echo 'PR Title is:' ${{ github.event.pull_request.title} }
                 
-                if [[ $GITHUB_PR_TITLE =~ ^\[DT-[0-9]+\] ]]; then
+                if [[ ${{ github.event.pull_request.title }} =~ ^\[DT-[0-9]+\] ]]; then
                   echo 'correct format'
                 else
                   echo 'wrong format'
