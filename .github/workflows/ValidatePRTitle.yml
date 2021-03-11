@@ -4,7 +4,8 @@ on:
   pull_request:
     branches: 
       - master
-#env:
+env:
+  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
 #  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}    
 
 jobs:
@@ -14,9 +15,16 @@ jobs:
     steps:
       - name: Validate PR Title
         run:  |
-                echo 'PR Title is:' ${{ github.event.pull_request.title }}
+                echo PR Numer is: $GITHUB_PR_NUMBER
+                #echo 'PR Title is:' ${{ github.event.pull_request.title }}
                 
-                if [[ ${{ github.event.pull_request.title }} =~ ^\[DT-[0-9]+\] ]]; then
+                restApiPRTitle = $(curl \
+                                      -H "Accept: application/vnd.github.v3+json" \
+                                      https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq '.title')
+                
+                echo $restApiPRTitle
+                
+                if [[ $restApiPRTitle =~ ^\[DT-[0-9]+\] ]]; then
                   echo 'correct format'
                 else
                   echo 'wrong format'
