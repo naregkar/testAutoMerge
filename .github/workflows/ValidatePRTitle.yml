@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Validate PR Title
         run:  |
-                echo 'PR Title is:' ${{ github.event.pull_request.title} }
+                echo 'PR Title is:' ${{ github.event.pull_request.title }}
                 
                 if [[ ${{ github.event.pull_request.title }} =~ ^\[DT-[0-9]+\] ]]; then
                   echo 'correct format'
