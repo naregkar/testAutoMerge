@@ -14,14 +14,7 @@ jobs:
   updatePRTitle:
     runs-on: ubuntu-latest
     
-    steps:
-    
-      - name: Extract branch name
-        id: extract_branch
-        shell: bash
-        run: |
-               echo "PR_Branch_Name=${{ github.head_ref }}"
-        
+    steps: 
       
       - name: Update PR Title
         run:  |
@@ -30,6 +23,6 @@ jobs:
                
                restApiGETWorkflowId=$(curl \
                                        -H "Accept: application/vnd.github.v3+json" \
-                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=nk-1" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ValidatePRTitle").id')
+                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ValidatePRTitle").id')
                
                echo $restApiGETWorkflowId
