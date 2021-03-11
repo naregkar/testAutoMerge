@@ -22,7 +22,7 @@ jobs:
                                       -H "Accept: application/vnd.github.v3+json" \
                                       https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq '.title')
                 
-                echo $restApiPRTitle
+                echo title is: $restApiPRTitle somethingelse
                 
                 if [[ $restApiPRTitle =~ ^\[DT-[0-9]+\] ]]; then
                   echo 'correct format'
