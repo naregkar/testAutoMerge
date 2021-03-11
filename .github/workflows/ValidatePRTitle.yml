@@ -22,13 +22,13 @@ jobs:
                                       -H "Accept: application/vnd.github.v3+json" \
                                       https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq '.title')
                 
-                temp="${restApiPRTitle%\"}"
-                temp="${temp#\"}"
+                parsedTitle="${restApiPRTitle%\"}"
+                parsedTitle="${parsedTitle#\"}"
                 echo $temp
                 
-                echo title is: $temp somethingelse
+                echo title is: $parsedTitle somethingelse
                 
-                if [[ $restApiPRTitle =~ ^\[DT-[0-9]+\] ]]; then
+                if [[ $parsedTitle =~ ^\[DT-[0-9]+\] ]]; then
                   echo 'correct format'
                 else
                   echo 'wrong format'
