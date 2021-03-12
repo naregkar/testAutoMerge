@@ -16,5 +16,7 @@ jobs:
       - name: Read version from current branch
         run: |
               ls
+              cd .github
+              ls
 
    
