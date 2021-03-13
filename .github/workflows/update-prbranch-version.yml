@@ -30,3 +30,7 @@ jobs:
               
               echo "$issue_fix_version" >> version
               cat version
+              
+              git add version
+              git commit -am "Updating the file version"
+              git push
