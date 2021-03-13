@@ -23,22 +23,7 @@ jobs:
                                -H "Accept: application/vnd.github.v3+json" \
                                https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq -r '.content')
                 
-               echo $contentMaster
-               
-               #echo "${contentMaster// /}" | base64 --decode
-               
-               #parsedContent="${contentMaster//\"}"
-               
-              
-               
-               #parsedContent=`echo $parsedContent | xargs`
-               #echo $parsedContent
+
                
                echo "$contentMaster" | base64 -d
              
-               
-               
-      
-              
-
-   
