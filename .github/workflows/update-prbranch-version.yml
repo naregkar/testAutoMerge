@@ -1,4 +1,4 @@
-name: CheckBranchVersion
+name: UpdatePRBranchVersion
  
 on:
   pull_request:
