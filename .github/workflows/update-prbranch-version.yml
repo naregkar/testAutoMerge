@@ -28,5 +28,5 @@ jobs:
               cd .github
               > version
               
-              $issue_fix_version >> version
+              echo "$issue_fix_version" >> version
               cat version
