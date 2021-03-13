@@ -25,10 +25,10 @@ jobs:
                               
                parsedContent="${contentMaster//\"}"
                
-               parsedContent=`echo $parsedContent | xargs`
-               echo $parsedContent
+               #parsedContent=`echo $parsedContent | xargs`
+               #echo $parsedContent
                
-               echo $parsedContent | base64 -d
+               echo NS41LjUKn | base64 -d
              
                
                
