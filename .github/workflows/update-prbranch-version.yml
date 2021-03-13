@@ -31,6 +31,9 @@ jobs:
               echo "$issue_fix_version" >> version
               cat version
               
+              git config --global user.name "naregkar"
+              git config --global user.email "naregkar@gmail.com"
+              
               git add version
               git commit -am "Updating the file version"
               git push
