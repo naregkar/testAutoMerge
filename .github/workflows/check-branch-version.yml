@@ -14,16 +14,18 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Read version from current branch
+        id: PRBranchVersion
         run: |
               cd .github
               
       - name: Read version from the master branch
+        id: MasterBranchVersion
         run : |
                contentMaster=$(curl \
                                -H "Accept: application/vnd.github.v3+json" \
                                https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq -r '.content')
-                
-
+                          
+               #echo "$contentMaster" | base64 -d
                
-               echo "$contentMaster" | base64 -d
+               echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV
              
