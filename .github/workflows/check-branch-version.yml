@@ -29,3 +29,6 @@ jobs:
                
                echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV
              
+
+      - name: Test
+        run: echo $master_version
