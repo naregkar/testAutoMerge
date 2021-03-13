@@ -7,31 +7,26 @@ on:
   workflow_dispatch:    
 
 jobs:
-  Check-Branch-Version:
+  Update-Branch-Version:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Read version from current branch
-        id: PRBranchVersion
-        run: |
-              cd .github
-              line=$(head -n 1 version)
-              echo $line
-              #echo "pr_version=$(echo version)" >> $GITHUB_ENV
               
-      - name: Read version from the master branch
-        id: MasterBranchVersion
+      - name: Read version from Jira Issue
         run : |
-               contentMaster=$(curl \
-                               -H "Accept: application/vnd.github.v3+json" \
-                               https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq -r '.content')
-                          
-               #echo "$contentMaster" | base64 -d
-               
-               echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV
+               restApiGET=$(curl --request GET \
+                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-11/' \
+                  --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
+                  --header 'Accept: application/json' | jq '.fields.fixVersions[].name');                   
+            
+               echo "issue_fix_version=$restApiGET" >> $GITHUB_ENV
              
 
-      - name: Test
-        run: echo $master_version
+      - name: Write to the version file
+        run: |
+              cd .github
+              > version
+              
+              $issue_fix_version >> version
+              cat version
