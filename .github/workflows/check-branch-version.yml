@@ -24,7 +24,8 @@ jobs:
                                https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq '.content')
                 
                echo 'Content master' $contentMaster
-               echo "$contentMaster" | base64 -d
+               
+               echo "${contentMaster// /}" | base64 --decode
                
                #parsedContent="${contentMaster//\"}"
                
