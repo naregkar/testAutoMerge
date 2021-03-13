@@ -25,9 +25,9 @@ jobs:
                               
                parsedContent="${contentMaster//\"}"
                
-               #echo $parsedContent | base64 -D
+               echo $parsedContent | base64 -d
                
-               base64 --help
+               
       
               
 
