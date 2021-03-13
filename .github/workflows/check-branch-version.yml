@@ -28,7 +28,7 @@ jobs:
                parsedContent=`echo $parsedContent | xargs`
                echo $parsedContent
                
-               #parsedContent=`echo $parsedContent | base64 -d`
+               echo $parsedContent | base64 -d
              
                
                
