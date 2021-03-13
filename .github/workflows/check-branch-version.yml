@@ -24,7 +24,7 @@ jobs:
                                https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq '.content')
                               
                parsedContent="${contentMaster//\"}"
-               echo $parsedContent
+               echo $parsedContent | xargs
                
                #$echo $parsedContent | base64 -d
                echo 'done'
