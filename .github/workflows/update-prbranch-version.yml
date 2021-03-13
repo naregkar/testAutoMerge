@@ -1,0 +1,37 @@
+name: CheckBranchVersion
+ 
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:    
+
+jobs:
+  Check-Branch-Version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Read version from current branch
+        id: PRBranchVersion
+        run: |
+              cd .github
+              line=$(head -n 1 version)
+              echo $line
+              #echo "pr_version=$(echo version)" >> $GITHUB_ENV
+              
+      - name: Read version from the master branch
+        id: MasterBranchVersion
+        run : |
+               contentMaster=$(curl \
+                               -H "Accept: application/vnd.github.v3+json" \
+                               https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq -r '.content')
+                          
+               #echo "$contentMaster" | base64 -d
+               
+               echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV
+             
+
+      - name: Test
+        run: echo $master_version
