@@ -25,6 +25,8 @@ jobs:
                               
                parsedContent="${contentMaster//\"}"
                
+               echo $parsedContent
+               
                #parsedContent=`echo $parsedContent | xargs`
                #echo $parsedContent
                
