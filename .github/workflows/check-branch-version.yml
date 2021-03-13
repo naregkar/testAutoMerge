@@ -34,7 +34,7 @@ jobs:
                #parsedContent=`echo $parsedContent | xargs`
                #echo $parsedContent
                
-               #echo 'NS41LjUK\n' | base64 -d
+               echo "$contentMaster" | base64 -d
              
                
                
