@@ -25,7 +25,7 @@ jobs:
                               
                parsedContent="${contentMaster//\"}"
                
-               removeTrailingSpaces=$parsedContent | xargs
+               removeTrailingSpaces=$parsedContent | sed 's/ //g'
                echo $removeTrailingSpaces
                
                #echo $parsedContent | base64 -d
