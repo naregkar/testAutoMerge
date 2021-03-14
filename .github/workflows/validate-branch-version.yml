@@ -8,15 +8,14 @@ on:
 
 jobs:
 
-Update-Branch-Version:
+  Update-Branch-Version:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       
       - name: Extract branch name
-        run: echo "PR_Branch_Name=${{ github.head_ref }}" >> $GITHUB_ENV
-  
+        run: echo "PR_Branch_Name=${{ github.head_ref }}" >> $GITHUB_ENV  
        
       - name: Read version from Jira Issue
         run : |
@@ -26,7 +25,6 @@ Update-Branch-Version:
                   --header 'Accept: application/json' | jq '.fields.fixVersions[].name');                   
             
                echo "issue_fix_version=$restApiGET" >> $GITHUB_ENV
-             
 
       - name: Write to the version file
         run: |
@@ -45,7 +43,6 @@ Update-Branch-Version:
               git add version
               git commit -am "Updating the file version"
               git push
-
 
 
 
@@ -72,8 +69,7 @@ Update-Branch-Version:
                           
                #echo "$contentMaster" | base64 -d
                
-               echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV
-             
+               echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV            
 
       - name: Test
         run: echo $master_version
