@@ -5,6 +5,8 @@ on:
     branches:
       - master
   workflow_dispatch:    
+env:
+  PR_BRANCH_NAME: ${GITHUB_REF##*/} 
 
 jobs:
   Update-Branch-Version:
@@ -27,6 +29,8 @@ jobs:
         run: |
               cd .github
               > version
+              
+              echo 'branch is' $PR_BRANCH_NAME
               
               echo "$issue_fix_version" >> version
               cat version
