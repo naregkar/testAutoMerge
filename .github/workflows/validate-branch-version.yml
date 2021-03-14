@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  Update-Branch-Version:
+  Validate-Branch-Version:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,12 +44,6 @@ jobs:
               git commit -am "Updating the file version"
               git push
 
-
-  Check-Branch-Version:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
 
       - name: Read version from current branch
         id: PRBranchVersion
