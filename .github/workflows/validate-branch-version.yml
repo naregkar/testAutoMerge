@@ -51,7 +51,7 @@ jobs:
               cd .github
               line=$(head -n 1 version)
               echo $line
-              echo "pr_version=$(echo version)" >> $GITHUB_ENV
+              echo "pr_version=$(echo $line)" >> $GITHUB_ENV
               
       - name: Read version from the master branch
         id: MasterBranchVersion
