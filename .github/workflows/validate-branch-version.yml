@@ -1,4 +1,4 @@
-name: CheckBranchVersion
+name: ValidateBranchVersion
  
 on:
   pull_request:
