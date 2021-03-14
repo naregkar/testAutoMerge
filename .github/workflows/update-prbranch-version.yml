@@ -40,7 +40,9 @@ jobs:
               git config --global user.name "naregkar"
               git config --global user.email "naregkar@gmail.com"
               
-              git checkout "${{ env.PR_Branch_Name }}"
-              git add version
-              git commit -am "Updating the file version"
-              git push
+              git fetch
+              git branch -a
+              #git checkout "${{ env.PR_Branch_Name }}"
+              #git add version
+              #git commit -am "Updating the file version"
+              #git push
