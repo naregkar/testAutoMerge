@@ -3,7 +3,7 @@ addReviewers: true
 addAssignees: false
 
 reviewers:
-  #- naregkar
-  - naregkarhotmail
+  - naregkar
+  #- naregkarhotmail
 
 numberOfReviewers: 0
