@@ -17,4 +17,4 @@ jobs:
           RETRY_SLEEP: "1000"
           MERGE_CONFLICT_ACTION: "ignore"
           PR_FILTER: "labelled"
-          PR_LABELS: "check,Code Review,Test Passed,Testing"
+          PR_LABELS: "UpdatePrFromMaster"
