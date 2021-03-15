@@ -37,7 +37,7 @@ jobs:
               cd .github
               > version
               
-              echo "$issue_fix_version" >> version
+              echo $issue_fix_version >> version
               cat version
               
               git add version
@@ -50,7 +50,7 @@ jobs:
               cd .github
               line=$(head -n 1 version)
               echo $line
-              #echo "pr_version=$(echo $line)" >> $GITHUB_ENV
+              echo "pr_version=$(echo $line)" >> $GITHUB_ENV
               
       - name: Read version file from the master branch
         id: MasterBranchVersion
@@ -58,9 +58,7 @@ jobs:
                contentMaster=$(curl \
                                -H "Accept: application/vnd.github.v3+json" \
                                https://api.github.com/repos/naregkar/testAutoMerge/contents/.github/version | jq -r '.content')
-                          
-               #echo "$contentMaster" | base64 -d
-               
+                                       
                echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV            
 
       - name: Compare values and assess the mergeability baesd on version files
