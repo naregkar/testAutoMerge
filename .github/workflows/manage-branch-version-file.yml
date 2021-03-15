@@ -30,10 +30,7 @@ jobs:
         run: |
               git config --global user.name "naregkar"
               git config --global user.email "naregkar@gmail.com"
-              
-              rm -rf .git/
-              git init
-              git remote add origin https://github.com/naregkar/testAutoMerge.git              
+                          
               git fetch
               git checkout "${{ env.PR_Branch_Name }}"
                            
@@ -44,7 +41,8 @@ jobs:
               cat version
               
               git add version
-              git commit -am "Updating the file version"
+              git diff-index --quiet HEAD || git commit -m 'Updating the file version from Jira Issue'
+              #git commit -am "Updating the file version"
               git push
 
 
