@@ -68,7 +68,7 @@ jobs:
               echo 'pr version is:' $pr_version
               echo 'master version is:' $master_version
               
-              if [[ "$pr_version" = "$master_version" ]]; then
+              if [[ "$pr_version" == "$master_version" ]]; then
                 echo 'proceed with the merge'
               else
                 echo 'branch planned for a future release'
