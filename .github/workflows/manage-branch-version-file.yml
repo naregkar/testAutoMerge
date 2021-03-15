@@ -37,6 +37,8 @@ jobs:
               cd .github
               > version
               
+              echo 'issueeeeee number:' $issue_fix_version
+              
               echo $issue_fix_version >> version
               cat version
               
