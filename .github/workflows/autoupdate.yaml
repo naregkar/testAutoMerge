@@ -1,0 +1,20 @@
+name: Auto update on base branch change
+on:
+  push:
+    branches:
+      - master
+jobs:
+  autoupdate:
+    name: autoupdate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: chinthakagodawita/autoupdate@v0.1.4
+        env:
+          GITHUB_TOKEN: "${{ github.token }}"
+          DRY_RUN: "false"
+          MERGE_MSG: "Branch was auto-updated."
+          RETRY_COUNT: "3"
+          RETRY_SLEEP: "1000"
+          MERGE_CONFLICT_ACTION: "ignore"
+          PR_FILTER: "labelled"
+          PR_LABELS: "check,Code Review,Test Passed,Testing"
