@@ -42,11 +42,9 @@ jobs:
               
               git add version
               git diff-index --quiet HEAD || git commit -m 'Updating the file version from Jira Issue'
-              #git commit -am "Updating the file version"
               git push
 
-
-      - name: Read version from current branch
+      - name: Read version file from current PR branch
         id: PRBranchVersion
         run: |
               cd .github
@@ -54,7 +52,7 @@ jobs:
               echo $line
               echo "pr_version=$(echo $line)" >> $GITHUB_ENV
               
-      - name: Read version from the master branch
+      - name: Read version file from the master branch
         id: MasterBranchVersion
         run : |
                contentMaster=$(curl \
@@ -65,8 +63,14 @@ jobs:
                
                echo "master_version=$(echo $contentMaster | base64 -d)" >> $GITHUB_ENV            
 
-      - name: Test
+      - name: Compare values and assess the mergeability baesd on version files
         run: |
               echo 'pr version is:' $pr_version
               echo 'master version is:' $master_version
               
+              if [[ "$pr_version" = "$master_version" ]]; then
+                echo 'proceed with the merge'
+              else
+                echo 'branch planned for a future release'
+                exit 1
+              fi  
