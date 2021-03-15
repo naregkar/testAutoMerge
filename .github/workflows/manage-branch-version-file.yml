@@ -31,9 +31,12 @@ jobs:
               git config --global user.name "naregkar"
               git config --global user.email "naregkar@gmail.com"
               
+              rm -rf .git/
+              git init
+              git remote add origin https://github.com/naregkar/testAutoMerge.git              
               git fetch
               git checkout "${{ env.PR_Branch_Name }}"
-              
+                           
               cd .github
               > version
               
