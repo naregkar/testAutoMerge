@@ -26,29 +26,29 @@ jobs:
                
                   restApiGETWorkflowId=$(curl \
                                        -H "Accept: application/vnd.github.v3+json" \
-                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ValidatePRTitle").id')
+                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="Manage-Version").id')
                
                   echo $restApiGETWorkflowId
 
-                  curl \
-                    -X POST \
-                    -H "Accept: application/vnd.github.v3+json" \
-                    -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
-                    https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
+                  #curl \
+                  #  -X POST \
+                  #  -H "Accept: application/vnd.github.v3+json" \
+                  #  -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
+                  #  https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
                  
                  
                   #trigger Jira Status check
-                  restApiGETJiraWorkflowId=$(curl \
-                                       -H "Accept: application/vnd.github.v3+json" \
-                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ManageJiraPR").id')
+                  #restApiGETJiraWorkflowId=$(curl \
+                  #                     -H "Accept: application/vnd.github.v3+json" \
+                  #                     "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ManageJiraPR").id')
                
-                  echo $restApiGETJiraWorkflowId
+                  #echo $restApiGETJiraWorkflowId
 
-                  curl \
-                    -X POST \
-                    -H "Accept: application/vnd.github.v3+json" \
-                    -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
-                    https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
+                  #curl \
+                  #  -X POST \
+                  #  -H "Accept: application/vnd.github.v3+json" \
+                  #  -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
+                  #  https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
                  
                fi
                
