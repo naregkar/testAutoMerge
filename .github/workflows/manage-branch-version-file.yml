@@ -16,11 +16,37 @@ jobs:
       
       - name: Extract branch name
         run: echo "PR_Branch_Name=${{ github.head_ref }}" >> $GITHUB_ENV  
-       
+     
+      - name: Validate PR Title
+        run:  |
+                echo PR Numer is: $GITHUB_PR_NUMBER
+                
+                restApiPRTitle=$(curl \
+                                      -H "Accept: application/vnd.github.v3+json" \
+                                      https://api.github.com/repos/naregkar/repo1/pulls/$GITHUB_PR_NUMBER | jq  -r '.title')
+                
+                echo $restApiPRTitle
+                
+                if [[ $restApiPRTitle =~ ^\[DT-[0-9]+\] ]]; then
+                  #if the title matches the pattern
+                  echo 'PR Title is in correct format.'
+                  
+                  jira_IdUnparsed=$restApiPRTitle
+                  jira_id=${jira_IdUnparsed%]*}
+                  jira_id=${jira_id:1}
+                  echo "JiraId=$jira_id" >> $GITHUB_ENV
+                  
+                else
+                  #stop the flow and fail the status check
+                  echo 'PR Title does not comply with the required pattern.'
+                  exit 1
+                fi
+     
+     
       - name: Read version from Jira Issue
         run : |
                restApiGET=$(curl --request GET \
-                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/DT-11/' \
+                  --url 'https://naregkar.atlassian.net/rest/api/3/issue/${{ env.JiraId }}/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq -r '.fields.fixVersions[].name');                   
             
@@ -37,7 +63,7 @@ jobs:
               cd .github
               > version
               
-              echo 'issueeeeee number:' $issue_fix_version
+              echo 'issue number:' $issue_fix_version
               
               echo $issue_fix_version >> version
               cat version
