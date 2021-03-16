@@ -97,8 +97,8 @@ jobs:
               echo 'master version is:' $master_version
               
               if [[ "$pr_version" == "$master_version" ]]; then
-                echo 'proceed with the merge'
+                echo 'Matching PR and master versions.'
               else
-                echo 'branch planned for a future release'
+                echo 'PR branch planned for a future release. Cannot merge.'
                 exit 1
               fi  
