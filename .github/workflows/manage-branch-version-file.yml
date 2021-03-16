@@ -5,7 +5,8 @@ on:
     types: [opened, edited, reopened]
     branches:
       - master 
-
+env:
+  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
 
 jobs:
 
