@@ -103,7 +103,7 @@ jobs:
               fi 
 
 
-      - name: Read Jira Issue Status and Assess the value
+      - name: Read Jira Issue Status
         id: retrieveJiraStatus    
         run: |
               echo ${{ env.JiraId }}
@@ -115,6 +115,6 @@ jobs:
             
               echo "JiraIssue_Status=$restApiGETStatus" >> $GITHUB_ENV
       
-              #echo "rest api echo is " $restApiGET
-            
-              echo 'status:' ${{ env.JiraIssue_Status }}
+      - name: Assess the Jira Status
+        run: |
+               echo 'status:' ${{ env.JiraIssue_Status }}
