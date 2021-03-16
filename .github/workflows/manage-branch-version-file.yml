@@ -112,7 +112,7 @@ jobs:
               restApiGETStatus=$(curl --request GET \
                   --url 'https://naregkar.atlassian.net/rest/api/3/issue/${{ env.JiraId }}/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
-                  --header 'Accept: application/json' | jq '.fields.status.name');                   
+                  --header 'Accept: application/json' | jq -r '.fields.status.name');                   
             
               echo "JiraIssue_Status=$restApiGETStatus" >> $GITHUB_ENV
       
@@ -124,7 +124,7 @@ jobs:
                    -X PUT --data '{ "fields": { "customfield_10029" : "'"$GITHUB_WORKFLOW_ID"'" }}' \
                    -H "Content-Type: application/json" https://naregkar.atlassian.net/rest/api/3/issue/${{ env.JiraId }}
 
-               if [[ ${{ env.JiraIssue_Status }} = "\"Ready to Merge\"" ]]; then
+               if [[ ${{ env.JiraIssue_Status }} = "Ready to Merge" ]]; then
                  echo "PR can be merged to master"
                else
                  echo "Jira Issue's status is not Ready to Merge. Cannot Merge to master."
