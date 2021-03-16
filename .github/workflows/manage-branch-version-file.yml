@@ -51,10 +51,10 @@ jobs:
                   --url 'https://naregkar.atlassian.net/rest/api/3/issue/${{ env.JiraId }}/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
                   --header 'Accept: application/json' | jq -r '.fields.fixVersions[].name');                   
-            
+              
                echo "issue_fix_version=$restApiGET" >> $GITHUB_ENV
 
-      - name: Write to the version file
+      - name: Write fixed version from Jira to the .github/version file
         run: |
               git config --global user.name "naregkar"
               git config --global user.email "naregkar@gmail.com"
@@ -74,7 +74,7 @@ jobs:
               git diff-index --quiet HEAD || git commit -m 'Updating the file version from Jira Issue'
               git push
 
-      - name: Read version file from current PR branch
+      - name: Read the fixed version file from the current PR branch
         id: PRBranchVersion
         run: |
               cd .github
@@ -83,7 +83,6 @@ jobs:
               echo "pr_version=$(echo $line)" >> $GITHUB_ENV
               
       - name: Read version file from the master branch
-        id: MasterBranchVersion
         run : |
                contentMaster=$(curl \
                                -H "Accept: application/vnd.github.v3+json" \
