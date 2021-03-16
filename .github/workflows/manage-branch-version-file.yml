@@ -21,6 +21,7 @@ jobs:
         run: echo "PR_Branch_Name=${{ github.head_ref }}" >> $GITHUB_ENV  
      
       - name: Validate PR Title
+        id: validatePRTitle
         run:  |
                 echo PR Numer is: $GITHUB_PR_NUMBER
                 
@@ -40,12 +41,10 @@ jobs:
                   echo "JiraId=$jira_id" >> $GITHUB_ENV
                   
                 else
-                  #stop the flow and fail the status check
-                  echo 'PR Title does not comply with the required pattern.'
+                  echo 'PR Title does not comply with the required pattern.'                  
                   exit 1
                 fi
-     
-     
+    
       - name: Read version from Jira Issue
         run : |
                restApiGET=$(curl --request GET \
