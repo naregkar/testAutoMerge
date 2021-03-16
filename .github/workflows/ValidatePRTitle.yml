@@ -21,12 +21,15 @@ jobs:
                 
                 restApiPRTitle=$(curl \
                                       -H "Accept: application/vnd.github.v3+json" \
-                                      https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq '.title')
+                                      https://api.github.com/repos/naregkar/testAutoMerge/pulls/$GITHUB_PR_NUMBER | jq -r '.title')
+                
+                echo 'restpititle:' $restApiPRTitle
                 
                 parsedTitle="${restApiPRTitle%\"}"
                 parsedTitle="${parsedTitle#\"}"
                 echo $temp
                 
+              
                 echo title is: $parsedTitle somethingelse
                 
                 if [[ $parsedTitle =~ ^\[DT-[0-9]+\] ]]; then
