@@ -1,0 +1,56 @@
+name: PRTitleUpdated
+
+on:
+   pull_request:
+    types:
+      - edited
+    branches: 
+      - master
+env:
+  GITHUB_PR_TITLE: ${{github.event.pull_request.title}}
+  GITHUB_PR_BRANCH_NAME: ${{ github.head_ref }}
+
+jobs:
+  PRTitleUpdated:
+    runs-on: ubuntu-latest
+    
+    steps: 
+      
+      - name: Update PR Title
+        run:  |
+               
+               if [[ $GITHUB_PR_TITLE =~ ^\[DT-[0-9]+\] ]]; then
+                  echo 'correct format'
+                  
+                  echo $GITHUB_PR_BRANCH_NAME
+               
+                  restApiGETWorkflowId=$(curl \
+                                       -H "Accept: application/vnd.github.v3+json" \
+                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ValidatePRTitle").id')
+               
+                  echo $restApiGETWorkflowId
+
+                  curl \
+                    -X POST \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
+                    https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
+                 
+                 
+                  #trigger Jira Status check
+                  restApiGETJiraWorkflowId=$(curl \
+                                       -H "Accept: application/vnd.github.v3+json" \
+                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ManageJiraPR").id')
+               
+                  echo $restApiGETJiraWorkflowId
+
+                  curl \
+                    -X POST \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
+                    https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
+                 
+               fi
+               
+               
+
