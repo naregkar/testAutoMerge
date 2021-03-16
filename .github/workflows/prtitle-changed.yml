@@ -24,26 +24,18 @@ jobs:
                   
                   echo $GITHUB_PR_BRANCH_NAME
                
-                  restApiGETWorkflowId=$(curl \
+                  restApiGETWorkflowIdManageVersion=$(curl \
                                        -H "Accept: application/vnd.github.v3+json" \
-                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="Manage-Version").id')
+                                       "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ManagePrBranchMasterVersionCompatibility").id')
                
-                  echo $restApiGETWorkflowId
+                  echo $restApiGETWorkflowIdManageVersion
 
-                  #curl \
-                  #  -X POST \
-                  #  -H "Accept: application/vnd.github.v3+json" \
-                  #  -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
-                  #  https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
-                 
-                 
-                  #trigger Jira Status check
-                  #restApiGETJiraWorkflowId=$(curl \
-                  #                     -H "Accept: application/vnd.github.v3+json" \
-                  #                     "https://api.github.com/repos/naregkar/testAutoMerge/actions/runs?event=pull_request&branch=$GITHUB_PR_BRANCH_NAME" | jq '.["workflow_runs"]' | jq '.[] | select(.name=="ManageJiraPR").id')
-               
-                  #echo $restApiGETJiraWorkflowId
-
+                  curl \
+                    -X POST \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    -H "Authorization: token ${{ secrets.TOKEN_GITHUB }}" \
+                    https://api.github.com/repos/naregkar/testAutoMerge/actions/runs/$restApiGETWorkflowId/rerun
+                                   
                   #curl \
                   #  -X POST \
                   #  -H "Accept: application/vnd.github.v3+json" \
@@ -52,5 +44,3 @@ jobs:
                  
                fi
                
-               
-
