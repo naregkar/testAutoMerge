@@ -106,6 +106,8 @@ jobs:
       - name: Read Jira Issue Status and Assess the value
         id: retrieveJiraStatus    
         run: |
+              echo ${{ env.JiraId }}
+              
               restApiGETStatus=$(curl --request GET \
                   --url 'https://naregkar.atlassian.net/rest/api/3/issue/${{ env.JiraId }}/' \
                   --user 'nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87' \
