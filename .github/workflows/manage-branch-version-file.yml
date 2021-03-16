@@ -126,8 +126,8 @@ jobs:
 
                echo 'returned status is:'$restApiGETStatus
                if [[ "$restApiGET" = "\"Ready to Merge\"" ]]; then
-                 echo "Finished.. Success"
+                 echo "PR can be merged to master"
                else
-                 echo "Not finished"
+                 echo "Jira Issue's status is not Ready to Merge. Cannot Merge to master."
                  exit 1
-               fi  
+               fi
