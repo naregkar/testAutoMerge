@@ -2,9 +2,10 @@ name: ManagePrBranchMasterVersionCompatibility
  
 on:
   pull_request:
+    types: [opened, edited]
     branches:
-      - master
-  #workflow_dispatch:    
+      - master 
+
 
 jobs:
 
