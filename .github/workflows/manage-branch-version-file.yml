@@ -2,7 +2,7 @@ name: ManagePrBranchMasterVersionCompatibility
  
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, reopened]
     branches:
       - master 
 
