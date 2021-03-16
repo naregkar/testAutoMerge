@@ -42,7 +42,7 @@ jobs:
                 else
                   #stop the flow and fail the status check
                   echo 'PR Title does not comply with the required pattern.'
-                  exit 1
+                  #exit 1
                 fi
      
      
@@ -100,7 +100,7 @@ jobs:
                 echo 'Matching PR and master versions.'
               else
                 echo 'PR branch planned for a future release. Cannot merge.'
-                exit 1
+                #exit 1
               fi
 
 
@@ -130,5 +130,5 @@ jobs:
                  echo "PR can be merged to master"
                else
                  echo "Jira Issue's status is not Ready to Merge. Cannot Merge to master."
-                 exit 1
+                 #exit 1
                fi
