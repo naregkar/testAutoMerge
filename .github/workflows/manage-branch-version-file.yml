@@ -101,7 +101,7 @@ jobs:
               else
                 echo 'PR branch planned for a future release. Cannot merge.'
                 exit 1
-              fi 
+              fi
 
 
       - name: Read Jira Issue Status
@@ -119,3 +119,15 @@ jobs:
       - name: Assess the Jira Status
         run: |
                echo 'status:' ${{ env.JiraIssue_Status }}
+               
+               curl -D- -u nareg.karamanoukian@picsart.com:oBJTrxuI3qf0Do1MBpGbBE87 \
+                   -X PUT --data '{ "fields": { "customfield_10029" : "'"$GITHUB_WORKFLOW_ID"'" }}' \
+                   -H "Content-Type: application/json" https://naregkar.atlassian.net/rest/api/3/issue/${{ env.JiraId }}
+
+               echo 'returned status is:'$restApiGETStatus
+               if [[ "$restApiGET" = "\"Ready to Merge\"" ]]; then
+                 echo "Finished.. Success"
+               else
+                 echo "Not finished"
+                 exit 1
+               fi  
